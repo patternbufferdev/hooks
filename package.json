@@ -1,7 +1,7 @@
 {
-  "name": "@evanrs/fetch",
-  "version": "0.1.0",
-  "description": "Fetch, but with types.",
+  "name": "@evanrs/use-hands",
+  "version": "0.0.0",
+  "description": "Idiomatic hooks for the finest bespoke and hand made tools 🔨",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "scripts": {
@@ -11,20 +11,22 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/evanrs/fetch.git"
+    "url": "git+https://github.com/evanrs/hook-idioms.git"
   },
   "keywords": [
-    "fetch",
-    "typescript",
-    "typed"
+    "react",
+    "hook-idioms"
   ],
   "author": "Evan Schneider <me@evanrs.com>",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/evanrs/fetch/issues"
+    "url": "https://github.com/evanrs/hook-idioms/issues"
   },
-  "homepage": "https://github.com/evanrs/fetch#readme",
+  "homepage": "https://github.com/evanrs/hook-idioms#readme",
+  "peerDependencies": {
+    "react": ">=17.0.0"
+  },
   "dependencies": {
-    "isomorphic-unfetch": "3.1.0"
+    "@types/react": "17.0.6"
   }
 }

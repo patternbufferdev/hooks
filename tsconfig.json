@@ -26,6 +26,6 @@
     "alwaysStrict": true,
     "declaration": true
   },
-  "include": ["./*.ts"],
+  "include": ["./src/**/*.ts"],
   "exclude": ["node_modules", "*.ignore.*"]
 }
