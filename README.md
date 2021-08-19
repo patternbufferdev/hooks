@@ -1,3 +1,3 @@
-# Fetch
+# @patternbuffer/hooks
 
-Now with types! … well, the response type for now.
+You know, just another work in progress.
