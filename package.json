@@ -1,12 +1,11 @@
 {
-  "name": "@evanrs/use-hands",
+  "name": "@patternbuffer/hooks",
   "version": "0.0.0",
   "description": "Idiomatic hooks for the finest bespoke and hand made tools 🔨",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "scripts": {
     "preinstall": "npx only-allow pnpm",
-    "postinstall": "pnpm run reset",
     "build": "tsc",
     "prestart": "pnpm run build",
     "test": "jest --ci",
@@ -36,14 +35,14 @@
   "peerDependencies": {
     "react": ">=17.0.0"
   },
-  "dependencies": {},
   "devDependencies": {
     "@commitlint/cli": "^12.1.1",
     "@commitlint/config-conventional": "^12.1.1",
-    "@types/react": "17.0.6",
     "@types/jest": "^26.0.23",
     "@types/luxon": "1.26.5",
     "@types/node": "^15.0.1",
+    "@types/react": "17.0.6",
+    "husky": "7.0.1",
     "jest": "^26.6.3",
     "jest-ts-webcompat-resolver": "^1.0.0",
     "standard-version": "^9.2.0",
