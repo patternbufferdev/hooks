@@ -1,19 +1,51 @@
-import React, { FC } from "react";
+import React, { ComponentType, FC, CSSProperties } from "react";
 import cx, { Argument } from "classnames";
 
-export type ElmComponent = FC<ElmProps>;
-export type ElmProps = {
-  as?: string | React.ComponentType<{ className: string }>;
+export type ElmProps<T = {}> = T & {
+  as?: string | ComponentType<{ className: string }>;
   cx?: Argument;
+  style?: CSSProperties;
+};
+
+export type ElmGlue<T = {}> = FC<ElmProps<Pick<T, Exclude<keyof T, keyof ElmProps>>>>;
+
+/**
+ * use Elm Props — the meat of the 🥧 :
+ * The "elmers glue" of classnames and style props
+ */
+export const useElmProps = (a: ElmProps, b?: ElmProps) => {
+  const { as: aas, cx: acx, style: astyle, ...aprops } = a;
+  const { as: bas, cx: bcx, style: bstyle, ...bprops } = b ?? {};
+
+  return {
+    ...aprops,
+    ...bprops,
+    as: bas ?? aas,
+    className: cx(acx, bcx),
+    style: { ...astyle, ...bstyle },
+  };
 };
 
 /**
- * Element Map
- * The Element Map component is a convenience for
- * coallescing css on to a given element
+ * Elm Create:
+ * The "elemers glue factory" for creating shallow render
+ * trees with prop extension for more expressive elements
  */
-export const Elm: FC<ElmProps> = ({ as: Elm = "div", cx: classNames }) => (
-  <Elm className={cx(classNames)} />
-);
+function create<D>(name?: string, defaults?: ElmProps<Partial<D>>) {
+  const Elm: ElmGlue<Partial<D>> = (props) => {
+    const { as: El = "div", ...elmProps } = useElmProps(props, defaults);
 
-export const useElm = (props: ElmProps) => <Elm {...props} />;
+    return <El {...elmProps} />;
+  };
+
+  Elm.displayName = name;
+
+  return Elm;
+}
+
+/**
+ * Elm — Element Mapping:
+ * The "elmers glue" for coalescing classnames as a
+ * given element or component.
+ */
+export const Elm: ElmGlue = Object.assign(create(), { create: create, cx });
