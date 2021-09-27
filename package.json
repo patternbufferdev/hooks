@@ -1,6 +1,6 @@
 {
   "name": "@patternbuffer/hooks",
-  "version": "0.0.0",
+  "version": "0.1.1",
   "description": "Idiomatic hooks for the finest bespoke and hand made tools 🔨",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -20,7 +20,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/evanrs/hook-idioms.git"
+    "url": "git+https://github.com/patternbufferdev/hooks.git"
   },
   "keywords": [
     "react",
