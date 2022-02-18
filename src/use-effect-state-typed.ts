@@ -1,3 +1,7 @@
+/**
+ * old revision of useEffectState
+ */
+
 import { useEffect, useRef, useState, Dispatch, SetStateAction } from "react";
 
 type UseEffectConsumer<Request, Response> = (

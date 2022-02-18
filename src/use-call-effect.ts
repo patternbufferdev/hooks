@@ -1,14 +1,21 @@
 import { DependencyList, Dispatch, SetStateAction, useCallback, useEffect, useState } from "react";
-import { useStateEffect } from "./use-state-effect";
+import { useMountedEffect } from "./use-mounted-effect";
 
+// can be used to multiplex a source to many sinks … maybe
+// I don't really remmeber why I wrote this
 export function useCallEffect<T>(
-  producer: (produce: Dispatch<SetStateAction<T | undefined>>) => T,
-  consumer: (product: T | undefined) => ReturnType<typeof useEffect>,
-  dependencies: DependencyList,
+  source: (produce: Dispatch<SetStateAction<T | undefined>>) => T,
+  sink: (product: T | undefined) => ReturnType<typeof useEffect>,
+  deps: DependencyList,
 ) {
-  const [returnedValue, setReturnedValue] = useState<T>();
+  const [message, setMessage] = useState<T>();
 
-  useStateEffect(consumer, returnedValue);
+  useMountedEffect(
+    (mounted) => {
+      return mounted() ? sink(message) : undefined;
+    },
+    [sink, message],
+  );
 
-  return useCallback(() => producer(setReturnedValue), [...dependencies, producer]);
+  return useCallback(() => source(setMessage), [source, ...deps]);
 }
